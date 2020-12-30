@@ -452,6 +452,11 @@ class logginedWindow{
 
         this.messageContentRequest = await fetch("https://gwc.chkdev.ru/htmlContent/message.html");
         this.messageContent = await this.messageContentRequest.text();
+
+        this.gwcUploadPreviewRequest = await fetch("https://gwc.chkdev.ru/htmlContent/photoPreview.html");
+        this.gwcPhotoPreview = await this.gwcUploadPreviewRequest.text();
+
+        window.gwcPhotoPreview = this.gwcPhotoPreview;
         window.messageContent = this.messageContent;
     }
 
@@ -640,6 +645,24 @@ class chkGwcMessage extends HTMLElement{
     
 }
 
+class gwcUploadImagePreview extends HTMLElement{
+    constructor(){
+        super();
+    }
+
+    connectedCallback(){
+        this.innerHTML = window.gwcPhotoPreview;
+
+        this.content = this.querySelector(".content");
+        this.width = this.getAttribute("width");
+        this.height = this.getAttribute("height");
+
+        this.style.width = this.width + "px";
+        this.style.height = this.height + "px";
+    }
+}
+
+window.customElements.define("gwc-upload-image-preview", gwcUploadImagePreview);
 window.customElements.define("chkdev-gwc-message", chkGwcMessage);
 
 
@@ -649,6 +672,7 @@ class MessageInput{
         this.attachPhotoIcon = document.querySelector(".attachIcon");
         this.photoInput = document.querySelector(".uploadPhotoInput");
         this.sendMessageContainer = document.querySelector(".send_message_cont");
+        this.uploadAttachContainer = document.querySelector(".uploadContentElementsContainer");
         this.uploadFileList = [];
         this.setEvent();
     }
@@ -677,7 +701,8 @@ class MessageInput{
         let file = this.photoInput.files[0];
         if (!file.type.startsWith("image/")) return;
 
-        this.addAttachPhotoToUI(file);
+        let tempFileUploadUID = "F" + (CryptoJS.SHA256(file.name + file.size + file.lastModified + random(0, 99999))).toString();
+        this.addAttachPhotoToUI(file, tempFileUploadUID);
 
         let formdata = new FormData();
         formdata.append("image", file);
@@ -689,6 +714,7 @@ class MessageInput{
         let xhr = new XMLHttpRequest();
         xhr.open("POST", url);
         xhr.responseType = "json";
+        xhr.requestID = tempFileUploadUID;
         xhr.send(formdata);
 
         xhr.onload = function(){
@@ -699,6 +725,7 @@ class MessageInput{
                         url: xhr.response.url,
                     };
                     self.uploadFileList.push(settingsObj);
+                    console.log(this.uploadFileList);
                 } else{
                     console.error("XHR Failed: " + xhr.status + " " + xhr.statusText);
                 }
@@ -730,46 +757,72 @@ class MessageInput{
         return await fetchData.server;
     }
 
-    async addAttachPhotoToUI(file){
-        if (!this.expanded) this.expande();
+    async addAttachPhotoToUI(file, uid){
         this.sizes_calc_worker = new Worker("https://gwc.chkdev.ru/js/worker-calc-img-size/worker.js");
         let origin_sizes = await this.getPhotoSizes(file);
         let optimalSizes = this.getOptimalIMGPreviewSizes(origin_sizes);
+        if (!this.expanded) this.expande();
+
+        setTimeout(() => {
+            let element = document.createElement("gwc-upload-image-preview");
+            element.setAttribute("data-uploadTempUID", uid);
+            element.setAttribute("width", optimalSizes.optimized_width);
+            element.setAttribute("height", optimalSizes.optimized_height);
+    
+            this.uploadAttachContainer.append(element);
+            new logginedWindowOptimization();
+        }, 500);
+
+
     }
 
     async getPhotoSizes(phFile){
         let self = this;
-        let fileReader = new FileReader();
         let tempElement = document.createElement("img");
-
         let promise = new Promise(function(resolve, reject){
-            fileReader.onload = (function(imgContainer){
-                return function(event){
-                    imgContainer.src = event.target.result;
+            self.sizes_calc_worker.postMessage({
+                operation: "calcOriginalSizes",
+                image: phFile,
+            });
+            self.sizes_calc_worker.onmessage = function(event){
+                if (event.data.action === "getOriginalSizes"){
+                    tempElement.src = event.data.result;
                     resolve(1);
-                }
-            })(tempElement);
-    
-            
-        })
-
-        fileReader.readAsDataURL(phFile);
+                };
+            };
+        });
 
         await promise;
 
-        return {width: tempElement.width, height: tempElement.height};
+        return{
+            width: tempElement.width,
+            height: tempElement.height,
+        };
+
     }
 
     getOptimalIMGPreviewSizes(origin_sizes){
+        let max_width = 150;
+        let max_height = 90;
 
-        let dataObj = {
-            origin_width: origin_sizes.width,
-            origin_height: origin_sizes.height,
-            max_height: 150,
-            max_width: 150,
-            operation: "calcMaxSizeOfPhotoOnPreview",
+
+        let new_width, new_height = 0;
+        let rw = origin_sizes.width / max_width;
+        let rh = origin_sizes.height / max_height;
+
+        if (rw > rh){
+            new_height = Math.round(origin_sizes.height / rw);
+            new_width = max_width;
+        } else{
+            new_width = Math.round(origin_sizes.width / rh);
+            new_height = max_height;
+        }
+
+        return {
+            optimized_width: new_width,
+            optimized_height: new_height,
         };
-        sizes_calc_worker.postMessage(dataObj);
+
     }
 
 
