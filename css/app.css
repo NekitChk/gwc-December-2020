@@ -1,0 +1,676 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    /* background-image: url("https://gaywebchat.chkdev.ru/videochat/image/background.png"); */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+form{
+    margin: 0;
+    padding: 0;
+}
+.appLogin{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    /* transition: width 0.5s; */
+    transition-property: width, height;
+    transition-duration: 0.5s, 0.5s;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    width: 900px;
+    height: 570px;
+    /* background-color: #FFF; */
+}
+
+.appLoginMinimized{
+    width: 350px;
+    height: 405px;
+}
+
+.authWindow{
+    position: absolute;
+    width: 350px;
+    height: 405px;
+    display: block;
+    /* background-color:#061D2B; */
+    backdrop-filter: brightness(0.4);
+    border-radius: 10px;
+    right: 0;
+    opacity: 1;
+    overflow: hidden;
+    top: 50%;
+    transform: translate(0, -50%);
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: #0f415f 0px 0px 15px 10px;
+    transition-property: box-shadow, height, opacity;
+    transition-duration: 1s, 0.5s, 0.5s;
+    transition-delay: 1.5s, 0s, 0s;
+
+}
+
+.authWindowFull{
+    height:100%;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    /* border-radius: 0px !important; */
+}
+
+.authWindowInVisible{
+    opacity: 0 !important;
+}
+
+.authTextContainer{
+    transition: opacity 0.5s;
+    position: absolute;
+    top: 25px;
+    width: 100%;
+    opacity: 1;
+}
+
+.authTextInVisible{
+    opacity: 0 !important;
+}
+
+.authTextContainer .authText{
+    font-size: 30px;
+    font-family: 'Alata', sans-serif;
+    font-weight: 700;
+    top: 25px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    /* color: #4B789F; */
+    color: #FFF;
+}
+
+@media (max-height: 405px){
+    .authWindow{
+        height: 405px;
+        top: 200px;
+    }
+}
+
+@media(max-width: 950px){
+    .evLogoContainer{
+        opacity: 0 !important;
+        display: none !important;
+    }
+}
+
+@media(max-height: 600px){
+    .evLogoContainer{
+        opacity: 0 !important;
+        display: none !important;
+    }
+}
+
+.authComment .authCommentText{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    /* color: #4B789F; */
+    /* color: #FFF; */
+    color: #747474;
+}
+
+.authComment{
+    transition: opacity 0.5s;
+    position: absolute;
+    width: 100%;
+    top: 85px;
+    opacity: 1;
+}
+
+.authCommentInVisible{
+    opacity: 0 !important; 
+}
+
+.loginForm{
+    position: absolute;
+    top: 165px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.authDescriptionContainer{
+    transition: opacity 0.5s;
+    position: absolute;
+    width: 100%;
+    top: 120px;
+    opacity: 1;
+}
+
+.authDescriptionContInVisible{
+    opacity: 0 !important;
+}
+
+.authDescriptionContainer .authDescriptionText{
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    /* color: #4B789F; */
+    /* color: #FFF; */
+    color: #747474;
+}
+
+.authInput{
+    margin-top: 20px;
+    width: 290px;
+    height: 50px;
+    border: 2px solid #3a4151;
+    border-radius: 10px;
+    outline: none;
+    text-align: center;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    /* color: #5081AB; */
+    color: #fff;
+    background-color: #012C3F;
+    transition: 0.5s;
+    box-shadow: none;
+}
+
+
+.authInput:focus{
+    border: 2px solid #FFF !important;
+    box-shadow: #fff 0px 0px 9px 1px;
+}
+
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonAuthContainer{
+    position: absolute;
+    top: 330px;
+    display:flex;
+    justify-content: center;
+    width:85%;
+    overflow: hidden;
+    outline:none;
+    border-radius: 10px;
+}
+
+.buttonAuthContainer .buttonAuth{
+    overflow: hidden;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    height: 44px;
+    width: 100%;
+    background: #012C3F;
+    border-radius: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    color: #FFF;
+    letter-spacing: 1.5px;
+    font-size: 12px;
+    outline: none;
+    border:none;
+    text-transform: uppercase;
+    z-index: 10000;
+}
+
+.login, .password, .button{
+    transition: left 0.5s;
+    position: relative;
+    left: 0px;
+}
+
+.loginInVisible, .passwordInVisible{
+    position: relative;
+    left: -400px;
+}
+
+.buttonInVisible{
+    position: relative;
+    left: 400px;
+}
+
+.evLogoContainer{
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 350px);
+    left: 0;
+    /* background-color: #1B1B1B; */
+    /* background-color: #353946; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    box-shadow: #454a5a -5px -2px 15px 10px;
+    /* transition-property: box-shadow;
+    transition-duration: 1s;
+    transition-delay: 2.8s; */
+    transition: box-shadow 1s 3s;
+    backdrop-filter: blur(20px);
+}
+
+.bottomContainer{
+    transition: top 0.5s;
+    position: relative;
+    top: 0;
+}
+
+.bottomContainerDown{
+    top: 155px !important;
+}
+
+.backgroundImage{
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+}
+.backgroundImage .image{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.backgroundImage .overlay, .gwcMainContent .overlay{
+    transition: opacity 0.5s;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: #000;
+    opacity: 0.8;
+}
+
+.BGOverlayopacity1, .gwcMainContent .BGOverlayopacity1{
+    opacity: 1 !important;
+}
+
+input:-internal-autofill-selected {
+    background-color: transparent !important;
+}
+
+.evLogoContainerInVisible{
+    opacity: 0 !important;
+    display: none;
+}
+
+.evLogoIMGC{
+    transition: opacity 0.5s;
+    opacity: 1;
+} 
+
+
+.gwcMainContent{
+    position: absolute;
+    background-color:gray;
+    display: block;
+    width: 100%;
+    height: 100%;  
+} 
+
+.gwcMainContent .backgroundImage{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+    filter:blur(7px);
+}
+
+.gwcMainContent .overlay{
+    z-index: 2;
+    opacity: 0.7 !important;
+}
+
+.gwcMainContent .mainContent{
+    position: absolute;
+    height: 95%;
+    width:720px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    border-radius: 10px;
+}
+
+.gwcMainContent .mainContent .bg{
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    background-color: #FFF;
+    opacity: 0.15;
+    border-radius: 10px;
+}
+
+.gwcMainContent .mainContent .content{
+    z-index: 5;
+}
+
+@media(max-width: 719px){
+    .gwcMainContent .mainContent{
+        width:100%;
+    }
+}
+
+.gwcMainContent .send_message_cont{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 65px;
+    z-index: 6;
+    overflow: hidden;
+    /* transition-property: height;
+    transition-duration: 0.5s; */
+}
+
+.send_message_cont .msgBackground{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color:#FFF;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: -1;
+}
+
+
+.send_message_cont .message{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.send_message_cont .message_input{
+    position: absolute;
+    background-color: #dfdee3;
+    z-index: 7;
+    height: 40px;
+    width: calc(100% - 155px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message_input .inputContainer{
+    position: absolute;
+    width: 90%;
+    height: 60%;
+}
+
+.inputContainer .messageIn{
+    width: 100%;
+    height: 100%;
+    background: none;
+    border:none;
+    outline: none;
+    font-size: 15px;
+    color: #000;
+    /* font-family: 'Alata', sans-serif; */
+    /* font-family: Segoe UI,Helvetica Neue,Helvetica,Lucida Grande,Arial,Ubuntu,Cantarell,Fira Sans,sans-serif; */
+    /* font-family: -apple-system-subheadline; */
+    font-family: "Roboto";
+    font-weight: 300;
+
+}
+
+.message_send{
+    position: absolute;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    z-index: 8;
+    /* top: 48%; */
+    top: 50%;
+    transform: translate(0, -50%);
+
+}
+
+.message_send .sendIcon{
+    transition-property: filter;
+    transition-duration: 0.2s;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://gwc.chkdev.ru/imgs/sendIcon.png");
+    background-size: cover;
+    filter: invert(37%) sepia(8%) saturate(590%) hue-rotate(182deg) brightness(89%) contrast(87%);
+}
+
+.message_send .sendIcon:hover{
+    /* filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(282deg) brightness(106%) contrast(102%); */
+    filter: invert(0%) sepia(0%) saturate(12%) hue-rotate(213deg) brightness(103%) contrast(103%);
+}
+
+.chkMessage{
+    transition-property: opacity;
+    transition-delay: 0.5s;
+    opacity: 0;
+}
+
+.messageVisible{
+    opacity: 1 !important;
+}
+
+.messages_container{
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100%;
+    z-index: 10;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.messages_list_center{
+    position: absolute;
+    height: 100%;
+    width: 85%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+chkdev-gwc-message{
+    width: 100%;
+    display: flex;
+    min-height: 50px;
+    height: auto;
+    margin-top: 15px;
+    position: relative;
+}
+
+.msgContent{
+    width: 100%;
+    height: 100%
+}
+
+.msgContent .userPhotoContainer{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+}
+
+.msgContent .userPhotoContainer .userPhoto{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.msgContent .userNameContainer{
+    position: relative;
+    height: 15px;
+    left: 60px;
+}
+
+.msgContent .userNameContainer .userNameText{
+    font-size: 15px;
+    color: #fff;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system,BlinkMacSystemFont,'Roboto','Helvetica Neue',Geneva,"Noto Sans Armenian","Noto Sans Bengali","Noto Sans Cherokee","Noto Sans Devanagari","Noto Sans Ethiopic","Noto Sans Georgian","Noto Sans Hebrew","Noto Sans Kannada","Noto Sans Khmer","Noto Sans Lao","Noto Sans Osmanya","Noto Sans Tamil","Noto Sans Telugu","Noto Sans Thai",sans-serif,arial,Tahoma,verdana;
+}
+
+.msgContent .userMessageContainer{
+    position: relative;
+    left: 60px;
+    color: #fff;
+    width: calc(100% - 60px);
+}
+
+.msgContent .userMessageContainer .userMessageText{
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
+    font-family: "Roboto";
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.msgContent .messageSeparator{
+    height: 10px;
+    width: 100%;
+}
+
+.messages_list_center .separator{
+    height: 30px;
+}
+
+.message .message_attach{
+    width: 40px;
+    height: 40px;
+    z-index: 8;
+    left: 20px;
+    top: 50%;
+    transform: translate(0, -50%);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message .message_attach .attachIcon{
+    transition-property: filter;
+    transition-duration: 0.2s;
+    width: 70%;
+    height: 70%;
+    background-size: cover;
+    background-image: url("https://gwc.chkdev.ru/imgs/attach_photo_icon.png");
+    filter: invert(37%) sepia(8%) saturate(590%) hue-rotate(182deg) brightness(89%) contrast(87%);
+}
+
+.message .message_attach .attachIcon:hover{
+    filter: invert(0%) sepia(0%) saturate(12%) hue-rotate(213deg) brightness(103%) contrast(103%);
+}
+
+.message .message_attach .attachInputContainer{
+    display: none;
+}
+
+.sendCexpanded{
+    height: 160px !important;
+}
+
+.msgI{
+    position: absolute;
+    width: 100%;
+    height: 45px;
+    bottom: 10px;
+}
+
+.message .uploadContent{
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 55px);
+}
+
+.message .uploadContent .uploadContentElementsContainer{
+    width: 100%;
+    height: 90px;
+    position: absolute;
+    top: 50%;
+    transform:translate(0, -50%);
+    display: flex;
+    align-items: center;
+}
+
+gwc-upload-image-preview{
+    position: relative;
+    border-radius: 10px;
+}
+
+gwc-upload-image-preview .content{
+    width: 100%;
+    height: 100%;
+}
+
+gwc-upload-image-preview:not(:first-child){
+    margin-left: 10px;
+}
+
+gwc-upload-image-preview:first-child{
+    margin-left: 27px;
+}
+
+gwc-upload-image-preview .content .loader{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+gwc-upload-image-preview .content .loader .background{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: red;
+    display: flex;    /* transition-property: height;
+    transition-duration: 0.5s; */
+    background-color: #8a8a8a;
+}
+
+gwc-upload-image-preview .content .image{
+    position: absolute;
+    top: 0;
+}
+
+@keyframes uploadBGAnimation{
+    0% {left: -100px;}
+    100% {left: 200px;}
+}
+
+gwc-upload-image-preview .content .loader .background .background_upload_animation{
+    animation: uploadBGAnimation 1s ease-in-out infinite;
+    position: relative;
+    width: 10px;
+    height: 100%;
+    filter: blur(10px);
+    background-color: #FFF;
+}
+
+gwc-upload-image-preview .imagePreview{
+    border-radius: 10px;
+}
+
+chkdev-gwc-message .attachments{
+    position: relative;
+    left: 60px;
+}
