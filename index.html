@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang = "ru">
+
+    <head>
+        <title>WEBCHAT</title>
+        <meta charset="utf-8" />
+        <meta name = "viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href = "https://gwc.chkdev.ru/css/app.css" rel = "stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Alata&family=Open+Sans:wght@400&family=Alata&family=Roboto:wght@900&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    </head>
+
+    <body style = "visibility: hidden;" onresize = "new authWindowOptimization()">
+        <div class = "backgroundImage">
+            <div class = "overlay BGOverlayopacity1"></div>
+            <div class = "image"></div>
+        </div>
+        <div class = "appLogin appLoginMinimized">
+            <div class = "authWindow authWindowInVisible">
+                <div class = "loginContent">
+                    <div class = "authTextContainer authTextInVisible">
+                        <p class = "authText">WebChat</p>
+                    </div>
+                    <div class = "authComment authCommentInVisible">
+                        <p class = "authCommentText">Welcome back!</p>
+                    </div>
+                    <div class = "authDescriptionContainer authDescriptionContInVisible">
+                        <p class = "authDescriptionText">Please, enter your login and password</p>
+                    </div>
+                    <div class = "bottomContainer">
+                        <div class = "loginForm">
+                            <form name = "loginForm" method = "post" action = "">
+                                <div class = "login loginInVisible" >
+                                    <input type = "text" name = "login" id = "login" class = "authInput" autocomplete = "off" placeholder="Логин" autocapitalize="off" autocorrect = "off">
+                                </div>
+                                <div class = "password passwordInVisible">
+                                    <input type = "password" name = "password" id = "password" class = "authInput" autocomplete = "off" placeholder = "Пароль" autocapitalize="off" autocorrect = "off">
+                                </div>
+                            </form>
+                        </div>
+                        <div class = "button buttonInVisible">
+                            <div class = "buttonAuthContainer">
+                                <button class = "buttonAuth">войти</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "evLogoContainer">
+                <div class = "evLogoIMGC">
+                    <img class = "evLogoIMG"src = "">
+                </div>
+            </div>
+        </div>
+        <script src = "https://gwc.chkdev.ru/js/app.js" type = "text/javascript"></script>
+        <script src = "https://cloud.chkdev.ru/js/ui&service.js" type = "text/javascript"></script>
+        <script src = "https://cloud.chkdev.ru/js/jquery_min.js" type = "text/javascript"></script>
+        <script src = "https://cloud.chkdev.ru/js/AJAX.js" type = "text/javascript"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" type = "text/javascript"></script>
+    </body>
+
+</html>
